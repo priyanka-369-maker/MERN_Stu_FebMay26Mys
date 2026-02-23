@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transform function</title>
+<style>
+    .animated-box{
+        width: 150px;
+        height: 150px;
+        background-color: cadetblue;
+        animation-name: moveFade;
+        animation-delay: 3s;
+        animation-duration: 3s;
+        animation-timing-function: ease-in-out;
+        animation-direction: alternate;
+        animation-iteration-count:infinite;
+        animation-fill-mode: both;
+    }
+    @keyframes moveFade {
+        0%{transform: translate(0); opacity: 1;}
+        100% {transform: translateX(200px); opacity: 0,3;}
+        
+    }
+    
+    
+</style>
+</head>
+<body>
+    <h2>transform function</h2>
+    <div class="animated-box"></div>
+</body>
+</html>
