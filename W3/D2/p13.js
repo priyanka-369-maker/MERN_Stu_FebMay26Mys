@@ -8,6 +8,7 @@ function scope(){
     console.log(insideConst);
 }
 scope();
+
 function varFunctionScoped(){
     if(true){
         var x = 40;
