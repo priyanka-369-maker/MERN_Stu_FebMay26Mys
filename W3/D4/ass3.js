@@ -8,16 +8,13 @@ let rules = [
   { role: "guest", action: "READ", allowed: false }
 ];
 
-
 // 1️ Filter rules where allowed === true
 let allowedRules = rules.filter(rule => rule.allowed === true);
-
 
 // 2️ Create simplified allowedPairs using map
 let allowedPairs = allowedRules.map(rule => {
   return rule.role + ":" + rule.action;
 });
-
 
 // 3️ Create summary object using reduce
 let summary = allowedRules.reduce((acc, rule) => {
