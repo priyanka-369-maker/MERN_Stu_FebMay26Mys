@@ -33,7 +33,6 @@ let totalNetPayout = netPayReport.reduce((sum, emp) => {
   return sum + emp.netPay;
 }, 0);
 
-
 // 4️.Print results
 console.log("Valid Records:", validRecords);
 console.log("Net Pay Report:", netPayReport);
