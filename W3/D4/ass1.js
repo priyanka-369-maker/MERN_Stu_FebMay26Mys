@@ -7,7 +7,6 @@ let tickets = [
   { id: "444", priority: "MEDIUM", resolved: true },
   { id: "555", priority: "HIGH", resolved: false }
 ];
-
 // 2 Add urgent ticket to the front
 tickets.unshift({ id: "111", priority: "HIGH", resolved: false });
 
