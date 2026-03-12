@@ -12,5 +12,4 @@ inspectBtn.addEventListener("click",function(){
     };
     console.log(info);
     out.textContent=JSON.stringify(info,null,2);
-    
-})
+    })
