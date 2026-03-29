@@ -15,7 +15,8 @@
 </head>
 
 <body>
-
+    <!-- Scroll Progress Bar -->
+<div id="scroll-bar" class="fixed top-0 left-0 h-1 bg-blue-500 w-0 z-[60]"></div>
     <!-- HERO SECTION -->
 
     <section
@@ -78,8 +79,7 @@
         </div>
 
     </section>
-
-    <!-- NAVBAR -->
+        <!-- NAVBAR -->
 
     <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b shadow-lg">
 
@@ -150,12 +150,18 @@
 
             <!-- Dynamic container for projects -->
 
-            <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"> 
             </div>
+            <div class="text-center mt-6">
+  <p id="project-count" class="mb-4 text-sm text-gray-600"></p>
+  
+
+  </div>
 
         </div>
 
     </section>
+
 
     <!-- EXPERIENCE -->
 
@@ -163,101 +169,38 @@
 
         <div class="max-w-4xl mx-auto">
 
-            <h2 class="text-4xl text-gray-700 text-center mb-20">
+            <h2 class="text-4xl text-black-700 text-center mb-20">
                 Education and Experience
             </h2>
-            <div class="space-y-8">
-
-                <!-- Card 1 -->
-                <div class="shadow-2xl rounded-3xl p-8 bg-white hover:shadow-xl transition-all">
-
-                    <div class="flex items-center gap-6">
-
-                        <div class="w-16 h-16 bg-emerald-400 rounded-full flex items-center justify-center shadow-lg">
-                            <span class="text-white font-bold">VTU</span>
-                        </div>
-
-                        <div>
-                            <h3 class="text-2xl font-semibold">B.E in Computer Science</h3>
-                            <p class="text-gray-600">CIT College • 2022 – 2026</p>
-                            <p class="text-gray-600">CGPA: 8.3</p>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="shadow-2xl rounded-3xl p-8 bg-white hover:shadow-xl transition-all">
-
-                    <div class="flex items-center gap-6">
-
-                        <div class="w-16 h-16 bg-emerald-400 rounded-full flex items-center justify-center shadow-lg">
-                            <span class="text-white font-bold">PU</span>
-                        </div>
-
-                        <div>
-                            <h3 class="text-2xl font-semibold">Pre-University</h3>
-                            <p class="text-gray-600">BGS PU College • 2020 – 2022</p>
-                            <p class="text-gray-600">Percentage: 72%</p>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="shadow-2xl rounded-3xl p-8 bg-white hover:shadow-xl transition-all">
-
-                    <div class="flex items-center gap-6">
-
-                        <div class="w-16 h-16 bg-emerald-400 rounded-full flex items-center justify-center shadow-lg">
-                            <span class="text-white font-bold">SSLC</span>
-                        </div>
-
-                        <div>
-                            <h3 class="text-2xl font-semibold">High School</h3>
-                            <p class="text-gray-600">Nirmala English High School • 2018 – 2020</p>
-                            <p class="text-gray-600">Percentage: 86%</p>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
+            <div id="experience-container"></div>
 
             <!-- existing experience cards remain unchanged -->
 
         </div>
 
+
     </section>
-    <!-- Internship Section -->
+    <!-- internship -->
     <section id="internship" class="py-24 px-8 lg:px-16">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl text-gray-700 text-center mb-20">Internship</h2>
-
-            <div class="group shadow-2xl rounded-3xl p-8 hover:shadow-2xl transition-all relative overflow-hidden">
-                <div class="absolute inset-0 bg-blue-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-
-                <div class="relative z-10 flex items-center gap-4">
-                    <div class="w-16 h-16 bg-emerald-400 rounded-full flex items-center justify-center shadow-lg">
-                        <span class="text-white font-bold">I</span>
-                    </div>
-
-                    <div>
-                        <h3 class="text-2xl font-semibold">
-                            Digital Marketing & Training Intern
-                        </h3>
-                        <p class="text-md font-semibold">
-                            Intern Infotech Pvt. Ltd.
-                        </p>
-                        <p class="text-sm">Duration: 1 Month</p>
-                        <p class="text-sm">
-                            Worked on SEO, Social Media Marketing, and Web Development Basics.
-                        </p>
-                    </div>
-                </div>
-            </div>
+            <h2 class="text-4xl text-center mb-10">Internship</h2>
+            <div id="internship-container"></div>
         </div>
     </section>
+    <!--testimonial-->
+    <section id="testimonials" class="py-24 px-8 lg:px-16 bg-gray-100">
+  <div class="max-w-4xl mx-auto text-center">
+
+    <h2 class="text-4xl font-bold mb-12">Testimonials</h2>
+
+    <div id="testimonials-container" class="grid gap-8 md:grid-cols-2">
+    </div>
+
+  </div>
+</section>
+
+
+
 
     <!-- SKILLS -->
 
@@ -339,9 +282,16 @@
     <script src="js/features/modal.js"></script>
     <script src="js/features/contact-validation.js"></script>
     <script src="js/features/theme-toggle.js"></script>
-    <script src="js/data/projects.js"></script>
-    <script src="js/features/project-render.js"></script>
-
+     <script src="js/features/project-render.js"></script>
+    <script src="js/data/Education.js"></script>
+    <script src="js/data/internship.js"></script>
+    <script src="js/features/education-render.js"></script>
+    <script src="js/features/Internship-render.js"></script>
+    
+    <script src="js/data/testimonial.js"></script>
+    <script src="js/features/testimonial-render.js"></script>
+    <script src="js/features/Project-slider.js"></script>
+    <script src="js/features/scroll-progress.js"></script>
     <script src="js/main.js"></script>
 
 </body>
