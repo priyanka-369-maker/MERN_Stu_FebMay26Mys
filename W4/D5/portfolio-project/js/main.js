@@ -5,5 +5,8 @@ document.addEventListener("DOMContentLoaded", function(){
     initContactValidation();
     initThemeToggle();
     renderProjects();
-    languageSelect();
-})
+    renderEducation();
+    renderInternship();
+     renderTestimonials();
+    initScrollProgress();
+});

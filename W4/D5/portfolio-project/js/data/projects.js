@@ -1,28 +1,28 @@
 const projectsData = [
   {
     id: 1,
-    name: "Smart companion app for traffic compliance",
+    name: "Smart Companion App for Traffic Compliance",
     category: "Python",
     description:
-      "App which minimize road accident notify traffic rules .",
+      "An application that helps minimize road accidents by notifying users about traffic rules and safety guidelines.",
     technologies: ["ReactJS", "ExpressJS", "MongoDB"],
     status: "Live",
     liveDemo: "#",
     github: "#"
   },
-
 
   {
     id: 2,
-    name: "Gola",
-    category: "MERN",
+    name: "Agroculture",
+    category: "python",
     description:
-      "Cab booking platform that helps users quickly book rides for daily travel.",
+      "A platform that helps farmers monitor crops, get weather updates, and improve productivity using smart technology.",
     technologies: ["ReactJS", "ExpressJS", "MongoDB"],
     status: "Live",
     liveDemo: "#",
     github: "#"
   },
+
   {
     id: 3,
     name: "Portfolio Website",
