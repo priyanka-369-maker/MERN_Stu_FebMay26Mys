@@ -1,0 +1,46 @@
+/* body{
+    background-color: AliceBlue;
+    color: Black;
+}
+
+nav{
+    background-color: LightSteelBlue;
+}
+
+section{
+    background-color: Lavender;
+}
+
+.bg-white{
+    background-color: White;
+}
+
+.text-gray-700{
+    color: Black;
+} */
+  Dark Theme 
+
+ .dark-mode{
+    background-color: rgb(84, 84, 167);
+    color: WhiteSmoke;
+}
+
+.dark-mode nav{
+    background-color: rgb(120, 219, 219);
+}
+
+.dark-mode section{
+    background-color: rgb(98, 98, 167);
+}
+
+.dark-mode .bg-blue-100{
+    background-color: rgb(126, 221, 221);
+}
+
+.dark-mode .bg-white{
+    background-color: rgb(111, 175, 240);
+}
+
+.dark-mode .text-gray-700{
+    color: rgb(129, 88, 88);
+} 

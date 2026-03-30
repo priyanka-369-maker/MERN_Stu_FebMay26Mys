@@ -1,0 +1,352 @@
+<!-- MERN_Stu_FebMay26Mys\W4\D5\portfolio-project\index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Week 3 & 4 Portfolio Project</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <link rel="stylesheet" href="css/custom.css">
+
+</head>
+
+<body>
+    <!-- Scroll Progress Bar -->
+<div id="scroll-bar" class="fixed top-0 left-0 h-1 bg-blue-500 w-0 z-[60]"></div>
+    <!-- HERO SECTION -->
+
+    <section
+        class="min-h-screen flex flex-col lg:flex-row lg:items-center lg:justify-between px-8 lg:px-16 py-20 gap-12 lg:gap-20">
+
+        <div class="order-2 lg:order-1 flex-1 lg:max-w-lg text-center lg:text-left">
+
+            <h1 class="text-5xl mb-6">Priyanka S</h1>
+
+            <p id="typing-text" class="text-xl lg:text-2xl text-slate-600 font-bold mb-10 max-w-md mx-auto lg:mx-0">
+</p>
+<p id="greeting" class="text-lg font-semibold text-blue-600 mb-4"></p>
+            <div
+                class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center lg:items-start mb-8">
+
+                <a href="#projects" class="bg-red-400 hover:bg-green-500 px-10 py-4 rounded shadow-xl">
+                    View Projects
+                </a>
+
+                <a href="Priyanka resume.pdf" class="bg-red-400 hover:bg-green-500 px-10 py-4 rounded shadow-xl">
+                    Download Resume
+                </a>
+
+            </div>
+            <div class="flex gap-6 justify-center lg:justify-start mb-6">
+
+                <a href="https://github.com/priyanka-369-maker/MERN_Stu_FebMay26Mys" target="_blank"
+                    class="text-gray-700 hover:text-blue-600 font-semibold">
+                    GitHub
+                </a>
+
+                <a href="https://www.linkedin.com/in/priyanka-s-b8a8a230b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+                    target="_blank" class="text-gray-700 hover:text-blue-600 font-semibold">
+                    LinkedIn
+                </a>
+
+                <a href="mailto:priyashivarm.com@gmail.com" class="text-gray-700 hover:text-blue-600 font-semibold">
+                    Email
+                </a>
+
+            </div>
+
+            <div class="flex flex-wrap gap-6 justify-center lg:justify-start text-sm font-bold">
+
+                <span>124+ Github commits</span>
+
+                <span>3 live projects completed</span>
+
+            </div>
+
+        </div>
+
+        <div class="order-1 lg:order-2 w-full lg:w-96 max-w-sm mx-auto lg:mx-0">
+
+            <img src="Myphoto.jpeg" alt="My photo"
+                class="aspect-square w-full rounded-full shadow-lg mx-auto lg:mx-0 hover:ring-blue-500 transition-all duration-300 hover:scale-[1.02]"
+                loading="lazy">
+
+        </div>
+        
+    </section>
+    <section class="py-10 text-center bg-gray-50 dark:bg-gray-900">
+
+    <h2 class="text-2xl font-bold mb-4">Your Location</h2>
+
+    <button id="get-location"
+        class="bg-blue-600 text-white px-5 py-2 rounded-lg shadow hover:bg-blue-700 transition">
+        Detect My Location
+    </button>
+
+    <p id="location-message" class="mt-4 text-lg font-semibold text-gray-700 dark:text-gray-300"></p>
+
+</section>
+    
+        <!-- NAVBAR -->
+
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b shadow-lg">
+
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+            <a href="#"
+                class="text-2xl font-bold bg-clip-text bg-gradient-to-r from-red-400 to-slate-700 text-transparent">
+                PS
+            </a>
+
+            <ul class="hidden md:flex items-center gap-10">
+
+                <li><a href="#projects" class="text-lg font-bold hover:text-blue-600">Projects</a></li>
+
+                <li><a href="#experience" class="text-lg font-bold hover:text-blue-600">Experience</a></li>
+
+                <li><a href="#skills" class="text-lg font-bold hover:text-blue-600">Skills</a></li>
+                <li><a href="#internship" class="text-lg font-bold hover:text-blue-600">Internship</a></li>
+
+
+            </ul>
+            <button id="theme-toggle" class="bg-gray-200 px-4 py-2 rounded font-bold">Theme</button>
+            <!-- <select id="language-select" class="border px-3 py-2 rounded font-bold">
+                <option value="en">English</option>
+                <option value="kn">Kannada</option>
+                <option value="hi">Hindi</option>
+            </select> -->
+            <a href="#contact" class="bg-red-400 hover:bg-green-500 rounded transition-all duration-300 px-8 py-3">
+                Let's talk
+            </a>
+
+        </div>
+
+    </nav>
+
+    <!-- PROJECTS -->
+
+    <section id="projects" class="py-24 px-8 lg:px-16">
+
+        <div class="max-w-7xl mx-auto">
+            <div class="projects-container">
+
+                <div class="text-center mb-10">
+
+                    <h2 class="text-4xl lg:text-5xl mb-6">My Projects</h2>
+
+                    <p class="text-xl max-w-2xl mx-auto">
+                        Enterprise scale full-stack applications built with modern frameworks
+                    </p>
+
+                </div>
+            </div>
+
+
+            <!-- Project Search (Feature will attach here) -->
+
+            <div class="mb-10 text-center">
+
+                <input id="project-search" type="text" placeholder="Search projects..."
+                    class="border rounded px-6 py-3 w-full max-w-md">
+                <select id="project-sort" class="border px-4 py-2 rounded">
+  <option value="default">Sort By</option>
+  <option value="name-asc">Name (A → Z)</option>
+  <option value="name-desc">Name (Z → A)</option>
+  <option value="status">Status</option>
+</select>
+            </div>
+
+            <!-- Project Filter Bar -->
+
+            <div id="project-filters" class="flex flex-wrap justify-center gap-4 mb-12">
+            </div>
+
+            <!-- Dynamic container for projects -->
+
+            <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"> 
+            </div>
+            <div class="text-center mt-6">
+  <p id="project-count" class="mb-4 text-sm text-gray-600"></p>
+  
+
+  </div>
+
+        </div>
+
+    </section>
+    <section id="recent-projects" class="py-12 px-8 lg:px-16">
+  
+  <h2 class="text-2xl font-bold mb-6 text-center">
+    Recently Viewed Projects
+  </h2>
+
+  <div id="recent-container" class="text-center text-gray-600">
+    No recently viewed projects
+  </div>
+
+</section>
+    
+
+
+    <!-- EXPERIENCE -->
+
+    <section id="experience" class="py-24 px-8 lg:px-16">
+
+        <div class="max-w-4xl mx-auto">
+
+            <h2 class="text-4xl text-black-700 text-center mb-20">
+                Education and Experience
+            </h2>
+            <div id="experience-container"></div>
+
+            <!-- existing experience cards remain unchanged -->
+
+        </div>
+
+
+    </section>
+    <!-- internship -->
+    <section id="internship" class="py-24 px-8 lg:px-16">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl text-center mb-10">Internship</h2>
+            <div id="internship-container"></div>
+        </div>
+    </section>
+    <!--testimonial-->
+    <section id="testimonials" class="py-24 px-8 lg:px-16 bg-gray-100">
+  <div class="max-w-4xl mx-auto text-center">
+
+    <h2 class="text-4xl font-bold mb-12">Testimonials</h2>
+
+    <div id="testimonials-container" class="grid gap-8 md:grid-cols-2">
+    </div>
+
+  </div>
+</section>
+
+
+
+
+    <!-- SKILLS -->
+
+    <section id="skills" class="py-24 px-8 lg:px-16 bg-blue-100">
+
+        <div class="max-w-7xl mx-auto">
+
+            <h2 class="text-4xl text-center font-bold mb-20">
+                Skills
+            </h2>
+            
+
+  
+    <!--  Filter Buttons -->
+    <div class="flex justify-center gap-4 mb-10">
+      <button onclick="filterSkills('All')" class="px-4 py-2 bg-gray-200 rounded">All</button>
+      <button onclick="filterSkills('Frontend')" class="px-4 py-2 bg-gray-200 rounded">Frontend</button>
+      <button onclick="filterSkills('Backend')" class="px-4 py-2 bg-gray-200 rounded">Backend</button>
+    </div>
+
+    <!-- Skills Container -->
+    <div id="skills-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    </div>
+
+  </div>
+
+</section>
+
+            
+
+    <!-- CONTACT MODAL -->
+
+    <button id="modal-trigger"
+        class="fixed bottom-8 right-8 w-16 h-16 bg-blue-900 text-white rounded-full shadow-2xl flex items-center justify-center text-2xl font-bold">
+        ☏
+    </button>
+
+    <div id="contact-modal" class="fixed inset-0 z-50 hidden bg-black/50 backdrop-blur-md">
+
+        <div class="flex items-center justify-center min-h-screen p-4">
+
+            <div id="modal-content"
+                class="bg-white w-full max-w-md rounded-2xl shadow-2xl scale-95 opacity-0 transition-all duration-300">
+
+                <div class="sticky top-0 border-b p-8 pt-12 bg-white">
+
+                    <h3 class="text-2xl font-bold">Contact Me</h3>
+
+                    <button id="modal-close" class="absolute top-6 right-6 text-2xl font-bold">
+                        ×
+                    </button>
+
+                </div>
+
+                <form id="contact-form" class="p-8 space-y-4">
+
+                    <input id="contact-name" type="text" placeholder="Your name"
+                        class="w-full border rounded px-4 py-3">
+
+                    <input id="contact-email" type="email" placeholder="email@website.com"
+                        class="w-full border rounded px-4 py-3">
+
+                    <p id="form-message" class="text-sm text-red-500"></p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+
+                        <button type="button" id="form-cancel" class="flex-1 font-bold py-4 px-6">
+                            Cancel
+                        </button>
+
+                        <button type="submit" class="flex-1 font-bold py-4 px-6">
+                            Submit
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- MAIN JS ENTRY -->
+    <script src="js/data/projects.js"></script>
+    <script src="js/data/skills.js"></script>
+    <script src="js/features/skills-render.js"></script>
+    <script src="js/features/modal.js"></script>
+    <script src="js/features/contact-validation.js"></script>
+    <script src="js/features/theme-toggle.js"></script>
+     <script src="js/features/project-render.js"></script>
+    <script src="js/data/Education.js"></script>
+    <script src="js/data/internship.js"></script>
+    <script src="js/features/education-render.js"></script>
+    <script src="js/features/Internship-render.js"></script>
+    
+    <script src="js/data/testimonial.js"></script>
+    <script src="js/features/testimonial-render.js"></script>
+    <script src="js/features/Project-slider.js"></script>
+    <script src="js/features/scroll-progress.js"></script>
+    <script src="js/features/scroll-progress-indicator.js"></script>
+    <script src="js/features/scroll-spy.js"></script>
+    <script src="js/features/Back-to-top-button.js"></script>
+    <script src="js/features/project-search.js"></script>
+    <script src="js/features/project-result-count.js"></script>
+    <script src="js/features/project-filter.js"></script>
+    <script src="js/features/project-sorting.js"></script>
+    <script src="js/features/Typing-animation.js"></script>
+    <script src="js/features/skills-filter.js"></script>
+    <script src="js/features/contact-autosave.js"></script>
+    <script src="js/features/Recently-viewedproject.js"></script>
+    <script src="js/features/theme-persistance.js"></script>
+    <script src="js/features/Dynamic-greeting"></script>
+    <script src="js/features/Geolocation.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
