@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function(){
     renderInternship();
      renderTestimonials();
     initScrollProgress();
-    initScrollProgress();
     initScrollSpy();
     initBackToTop();
     initProjectSearch();
@@ -19,6 +18,5 @@ document.addEventListener("DOMContentLoaded", function(){
     initSkillsSection();
     initContactAutoSave();
     initRecentlyViewedProjects();
-    initThemePersistence();
     initGeolocationFeature();
 });
