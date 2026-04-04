@@ -1,4 +1,4 @@
-// Creating a sinple a HTTP server
+// Creating a simple HTTP server
 const http = require("http");
 //createServer(): creates a HTTP server instance
 //Accepts a callback with two important objects:
