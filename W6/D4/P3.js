@@ -1,4 +1,5 @@
 //Inspecting request details in an HTTP server
+
 const http = require("http");
 const server = http.createServer(function(req,res){
     //writehead() sets the response status code and headers
