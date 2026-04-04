@@ -1,4 +1,4 @@
-//Directoty(folder) operations: mkdir readdir and rmdir/rm
+//Directory(folder) operations: mkdir readdir and rmdir/rm
 const fs=require("fs");
 const path=require("path");
 
