@@ -1,4 +1,4 @@
-//Middlewear chaining and error-handling middlewear
+//Middleware chaining and error-handling middleware
 const express = require("express");
 const app = express();
 //First middlewear: eg: authentication
