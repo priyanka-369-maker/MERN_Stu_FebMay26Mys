@@ -8,7 +8,7 @@ const{
     getAllBookings,
     getMyBookings
 } = require("../controllers/bookingController");
-const roleMiddleware = require("../middleware/roleMiddleware");
+const { route } = require("./userRoutes");
 const router = express.Router();
 //Create a booking / to book ticket/s
 router.post("/bookings",authMiddleware,bookingValidationHandler, createBooking);
