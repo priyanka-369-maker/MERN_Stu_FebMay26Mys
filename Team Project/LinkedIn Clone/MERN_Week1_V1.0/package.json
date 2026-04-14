@@ -1,0 +1,21 @@
+{
+  "name": "mern_week1_v1.0",
+  "version": "1.0.0",
+  "description": "CLI-based LinkedIn Clone using Node.js",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"No tests yet\""
+  },
+  "keywords": [
+    "nodejs",
+    "cli",
+    "linkedin-clone"
+  ],
+  "author": "Priyanka",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2"
+  }
+}
