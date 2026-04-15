@@ -17,7 +17,7 @@ async function main() {
         });
         const User=mongoose.model('User',userSchema);
         const embeddedUser=await User.create({
-            name:"Kavya",
+            name:"Priya",
             orders:[
                 {product:"Laptop",price:50000},
                 {product:"Printer",price:10000},
@@ -46,7 +46,7 @@ async function main() {
         const UserRef=mongoose.model('UserRef',userRefSchema);
         const OrderRef=mongoose.model('OrderRef',orderRefSchema);
 
-        const refUser=await UserRef.create({name:"Kavya"})
+        const refUser=await UserRef.create({name:"Shivaram"})
         await OrderRef.create([
                 {product:"Phone",price:70000,user:refUser._id},
                 {product:"Changer",price:2000,user:refUser._id}
