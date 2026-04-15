@@ -1,4 +1,3 @@
-//CLI Profile Manager-main file
 const readline = require("readline");
 const chalk = require("chalk");
 
@@ -13,129 +12,131 @@ const {
     addSkill,
     addExperience,
     addEducation
-} = require("./Profile");
+} = require("./profile");
+
+const {
+    sendRequest,
+    acceptRequest,
+    requests
+} = require("./connection");
+
+const {
+    createPost,
+    posts,
+    likePost
+} = require("./posts");
+
+const { getFeed } = require("./feed");
+
+const emitter = require("./events");
 
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
 
-// Main Menu
-function menu() {
-    console.log(chalk.red("\n--- MENU ---"));
-    console.log("1. Create Profile");
-    console.log("2. Login");
-    console.log("3. View My Profile");
-    console.log("4. Edit Profile");
-    console.log("5. View Other Profiles");
-    console.log("6. Exit");
+emitter.emit("sessionStarted");
 
-    rl.question("Choose option: ", (choice) => {
+function menu() {
+    console.log(chalk.yellow("\n--- MENU ---"));
+    console.log("1.Create Profile");
+    console.log("2.Login");
+    console.log("3.View Profile");
+    console.log("4.Edit Profile");
+    console.log("5.View Other Profiles");
+    console.log("6.Send Request");
+    console.log("7.View Requests");
+    console.log("8.View Connections");
+    console.log("9.Create Post");
+    console.log("10.View Feed");
+    console.log("11.Like Post");
+    console.log("12.Exit");
+
+    rl.question("Choose: ", async (choice) => {
+
+        const currentUser = getCurrentUser();
+
         switch (choice) {
 
-            // CREATE PROFILE
             case "1":
-                rl.question("Enter Name: ", (name) => {
-                    rl.question("Enter Headline: ", (headline) => {
-                        const user = createUser(name, headline);
-                        console.log(chalk.green("Profile created!"));
-                        console.log(user);
+                rl.question("Name: ", (name) => {
+                    rl.question("Headline: ", (headline) => {
+                        const u = createUser(name, headline);
+                        emitter.emit("profileCreated", u);
                         menu();
                     });
                 });
                 break;
 
-            // LOGIN
             case "2":
                 console.log(getAllUsers());
-                rl.question("Enter User ID to login: ", (id) => {
-                    const user = loginUser(Number(id));
-                    if (user) {
-                        console.log(chalk.green("Login successful"));
-                    } else {
-                        console.log(chalk.red("User not found"));
-                    }
+                rl.question("ID: ", (id) => {
+                    loginUser(Number(id));
                     menu();
                 });
                 break;
 
-            // VIEW MY PROFILE
             case "3":
-                const current = getCurrentUser();
-                if (!current) {
-                    console.log(chalk.red("Please login first"));
-                } else {
-                    console.log(chalk.cyan("\nMy Profile:"));
-                    console.log(current);
-                }
+                console.log(currentUser);
                 menu();
                 break;
 
-            // EDIT PROFILE
             case "4":
-                const user = getCurrentUser();
-                if (!user) {
-                    console.log(chalk.red("Login required"));
-                    return menu();
-                }
-
-                console.log("\n1. Add Skill");
-                console.log("2. Add Experience");
-                console.log("3. Add Education");
-
-                rl.question("Choose: ", (opt) => {
-                    if (opt === "1") {
-                        rl.question("Enter Skill: ", (skill) => {
-                            addSkill(user, skill);
-                            console.log(chalk.green("Skill added"));
-                            menu();
-                        });
-                    } else if (opt === "2") {
-                        rl.question("Enter Experience: ", (exp) => {
-                            addExperience(user, exp);
-                            console.log(chalk.green("Experience added"));
-                            menu();
-                        });
-                    } else if (opt === "3") {
-                        rl.question("Enter Education: ", (edu) => {
-                            addEducation(user, edu);
-                            console.log(chalk.green("Education added"));
-                            menu();
-                        });
-                    } else {
-                        console.log(chalk.red("Invalid option"));
-                        menu();
-                    }
+                rl.question("Skill: ", (s) => {
+                    addSkill(currentUser, s);
+                    menu();
                 });
                 break;
 
-            // VIEW OTHER PROFILES
             case "5":
-                const allUsers = getAllUsers();
-                const currentUser = getCurrentUser();
-
-                // Filter out logged-in user
-                const otherUsers = allUsers.filter(u => u.id !== currentUser?.id);
-
-                if (otherUsers.length === 0) {
-                    console.log(chalk.red("No other users found"));
-                } else {
-                    console.log(chalk.blue("\nAll Profiles:"));
-                    otherUsers.forEach(u => {
-                        console.log(`ID: ${u.id} | Name: ${u.name} | Headline: ${u.headline}`);
-                    });
-                }
+                console.log(getAllUsers());
                 menu();
                 break;
 
-            // EXIT
             case "6":
-                console.log("Goodbye!");
+                rl.question("User ID: ", async (id) => {
+                    const r = getAllUsers().find(u => u.id == id);
+                    await sendRequest(currentUser, r);
+                    menu();
+                });
+                break;
+
+            case "7":
+                console.log(requests);
+                menu();
+                break;
+
+            case "8":
+                console.log(currentUser.connections);
+                menu();
+                break;
+
+            case "9":
+                rl.question("Post: ", async (c) => {
+                    await createPost(currentUser, c);
+                    menu();
+                });
+                break;
+
+            case "10":
+                console.log(await getFeed(currentUser));
+                menu();
+                break;
+
+            case "11":
+                rl.question("Post ID: ", (id) => {
+                    const p = posts.find(x => x.id == id);
+                    likePost(currentUser.id, p);
+                    menu();
+                });
+                break;
+
+            case "12":
                 rl.close();
                 break;
 
             default:
-                console.log(chalk.red("Invalid choice"));
+                console.log("Invalid");
                 menu();
         }
     });
