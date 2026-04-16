@@ -30,3 +30,12 @@ Thumbs.db
 
 # Testing
 /coverage/
+support
+async-note.txt
+promises-note.txt
+sync-note.txt
+package-lock.json
+package.json
+
+newFile.txt
+curl
