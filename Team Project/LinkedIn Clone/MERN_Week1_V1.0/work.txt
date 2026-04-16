@@ -1,7 +1,7 @@
 
 Project Contribution:
 
-Priyanka          - index.js (Main entry point)
+Priyanka          - index.js (Main entry point),validator
 Vishnu Mahendra   - Events & Database Connection
-Nisarga           - User Data Module
-Reshma            - Profile Module
+Nisarga           - User Data Module,post
+Reshma            - Profile Module,feed
