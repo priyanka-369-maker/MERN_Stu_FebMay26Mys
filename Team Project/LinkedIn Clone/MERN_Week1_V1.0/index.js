@@ -1,3 +1,4 @@
+//Main file from where the project begins
 const readline = require("readline");
 const chalk = require("chalk");
 
@@ -26,6 +27,7 @@ const {
     likePost
 } = require("./posts");
 
+
 const { getFeed } = require("./feed");
 
 const emitter = require("./events");
@@ -35,6 +37,7 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
+// Start session
 emitter.emit("sessionStarted");
 
 function menu() {
@@ -58,6 +61,7 @@ function menu() {
 
         switch (choice) {
 
+            // CREATE PROFILE
             case "1":
                 rl.question("Name: ", (name) => {
                     rl.question("Headline: ", (headline) => {
@@ -68,6 +72,7 @@ function menu() {
                 });
                 break;
 
+            // LOGIN
             case "2":
                 console.log(getAllUsers());
                 rl.question("ID: ", (id) => {
@@ -76,67 +81,147 @@ function menu() {
                 });
                 break;
 
+            // VIEW PROFILE
             case "3":
-                console.log(currentUser);
+                if (!currentUser) {
+                    console.log(chalk.red("Please login first"));
+                } else {
+                    console.log(currentUser);
+                }
                 menu();
                 break;
 
+            // EDIT PROFILE (Add Skill)
             case "4":
+                if (!currentUser) {
+                    console.log(chalk.red("Please login first"));
+                    return menu();
+                }
                 rl.question("Skill: ", (s) => {
                     addSkill(currentUser, s);
+                    console.log(chalk.green("Skill added"));
                     menu();
                 });
                 break;
 
+            // VIEW OTHER PROFILES
             case "5":
-                console.log(getAllUsers());
+                const allUsers = getAllUsers();
+
+                const otherUsers = allUsers.filter(
+                    u => u.id !== currentUser?.id
+                );
+
+                if (otherUsers.length === 0) {
+                    console.log(chalk.red("No other users found"));
+                } else {
+                    console.log(chalk.blue("\nAll Profiles:"));
+                    otherUsers.forEach(u => {
+                        console.log(
+                            `ID: ${u.id} | Name: ${u.name} | Headline: ${u.headline}`
+                        );
+                    });
+                }
                 menu();
                 break;
 
+            // SEND REQUEST
             case "6":
+                if (!currentUser) {
+                    console.log("Please login first");
+                    return menu();
+                }
                 rl.question("User ID: ", async (id) => {
-                    const r = getAllUsers().find(u => u.id == id);
-                    await sendRequest(currentUser, r);
+                    const receiver = getAllUsers().find(u => u.id == id);
+                    if (!receiver) {
+                        console.log("User not found");
+                    } else {
+                        await sendRequest(currentUser, receiver);
+                        console.log("Request sent");
+                    }
                     menu();
                 });
                 break;
 
+            // VIEW REQUESTS
             case "7":
                 console.log(requests);
                 menu();
                 break;
 
+            // VIEW CONNECTIONS
             case "8":
-                console.log(currentUser.connections);
+                if (!currentUser) {
+                    console.log("Please login first");
+                } else {
+                    console.log(currentUser.connections);
+                }
                 menu();
                 break;
 
+            // CREATE POST
             case "9":
-                rl.question("Post: ", async (c) => {
-                    await createPost(currentUser, c);
+                if (!currentUser) {
+                    console.log("Please login first");
+                    return menu();
+                }
+                rl.question("Post: ", async (content) => {
+                    await createPost(currentUser, content);
+                    console.log("Post created");
                     menu();
                 });
                 break;
 
+            // VIEW FEED
             case "10":
-                console.log(await getFeed(currentUser));
+                if (!currentUser) {
+                    console.log("Please login first");
+                    return menu();
+                }
+
+                const feed = await getFeed(currentUser);
+
+                if (feed.length === 0) {
+                    console.log("No posts in feed");
+                } else {
+                    console.log(chalk.green("\n--- FEED ---"));
+                    feed.forEach(p => {
+                        console.log(`PostID: ${p.id} | User: ${p.userId}`);
+                        console.log(`Content: ${p.content}`);
+                        console.log(`Likes: ${p.likes.length}`);
+                        console.log(`Time: ${p.createdAt}`);
+                        console.log("----------------------");
+                    });
+                }
                 menu();
                 break;
 
+            // LIKE POST
             case "11":
+                if (!currentUser) {
+                    console.log("Please login first");
+                    return menu();
+                }
                 rl.question("Post ID: ", (id) => {
                     const p = posts.find(x => x.id == id);
-                    likePost(currentUser.id, p);
+                    if (!p) {
+                        console.log("Post not found");
+                    } else {
+                        likePost(currentUser.id, p);
+                        console.log("Post liked");
+                    }
                     menu();
                 });
                 break;
 
+            // EXIT
             case "12":
+                console.log(chalk.yellow("Exiting..."));
                 rl.close();
                 break;
 
             default:
-                console.log("Invalid");
+                console.log("Invalid choice");
                 menu();
         }
     });
