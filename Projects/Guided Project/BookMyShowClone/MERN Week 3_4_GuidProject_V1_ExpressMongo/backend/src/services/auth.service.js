@@ -4,10 +4,12 @@ const otpService = require("./otp.service");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 // Register user
-exports.registerUser = async (name,email,password) =>{
-    const existingUser = await User.findOne({email});
-    if(existingUser){
-throw new Error("User already exists with this email");
+exports.registerUser = async ({ name, email, password }) => {
+   const existingUser = await User.findOne({ email });
+
+if (existingUser) {
+    throw new Error("User already exists");
+
     }
     const user = await User.create({
         name,
@@ -19,8 +21,8 @@ throw new Error("User already exists with this email");
     return {email:user.email};
 };
 // Verify OTP
-exports. verifyOTP = async (email,otp) =>{
-    const record = await OTP.findOne({email,otp});
+exports.verifyOTP = async (email,otp) =>{
+    const record = await OTP.findOne({email}).select("+otp");
     if(!record){
         throw new Error("OTP expired or not found");
     }
@@ -52,7 +54,7 @@ exports.loginUser = async({email,password})=>{
         token,
         user: {
             id: user._id,
-            role: user.role,
+            role: user.role
         },
     };
 };
