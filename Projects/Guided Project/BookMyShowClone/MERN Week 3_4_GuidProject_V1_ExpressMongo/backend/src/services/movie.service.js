@@ -1,8 +1,9 @@
-const movie = require("../models/Movie");
+const Movie = require("../models/Movie");
 //Create Movie
 exports.createMovie = async (data) => {
-    return await movie.create(data);
+    return await Movie.create(data); 
 };
+
 //Get movies
 exports.getMovies = async (query) => {
     let { page = 1, limit = 5, genre, rating, search, sort } = query;
@@ -18,7 +19,7 @@ exports.getMovies = async (query) => {
     if (search) {
         filter.$text = { $search: search };
     }
-    let mongoQuery = movie.find(filter);
+    let mongoQuery = Movie.find(filter);
     if (sort) {
         mongoQuery = mongoQuery.sort(sort);
 
@@ -28,7 +29,7 @@ exports.getMovies = async (query) => {
     const skip = (page - 1) * limit;
     mongoQuery = mongoQuery.skip(skip).limit(limit);
     const movies = await mongoQuery;
-    const total = await movie.countDocuments(filter);
+    const total = await Movie.countDocuments(filter);
     return {
         movies,
         pagination: {
