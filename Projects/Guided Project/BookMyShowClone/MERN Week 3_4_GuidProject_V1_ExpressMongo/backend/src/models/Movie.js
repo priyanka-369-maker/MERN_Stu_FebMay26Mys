@@ -7,7 +7,7 @@ const movieSchema = new mongoose.Schema({
         index:true,
     },
     genre:{
-        type:string,
+        type:String,
         required:[true,"Genre is required"],
         trim:true,
         enum:[
