@@ -1,25 +1,35 @@
 //User feed logic
 const { posts } = require("./posts");
+const emitter = require("./events");
+const { getAllUsers } = require("./user");
 
-async function getFeed(currentUser) {
-    if (!currentUser) {
-        console.log("Please login first");
-        return [];
-    }
+async function getFeed(user) {
+  try {
+    if (!user) throw new Error("Login required");
 
-    // Get connection IDs
-    const connectionIds = (currentUser.connections || []).map(c => c.id);
+    const users = getAllUsers();
 
-    // Include current user also
-    connectionIds.push(currentUser.id);
+    const feed = posts
+      .filter(p =>
+        user.connections.includes(p.author) || p.author === user.id
+      )
+      .map(p => {
+        const author = users.find(u => u.id === p.author);
+        return {
+          ...p,
+          authorName: author?.name
+        };
+      })
+      .sort((a, b) => b.timestamp - a.timestamp);
 
-    // Filter posts from connections + self
-    const feedPosts = posts.filter(p => connectionIds.includes(p.userId));
+    emitter.emit("feedViewed");
 
-    // Sort by latest first 
-    feedPosts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    return feed;
 
-    return feedPosts;
+  } catch (err) {
+    emitter.emit("operationFailed", err.message);
+    return [];
+  }
 }
 
 module.exports = { getFeed };
