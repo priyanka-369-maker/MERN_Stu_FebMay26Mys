@@ -1,43 +1,79 @@
 //Connection request handler
 const emitter = require("./events");
 
-const requests = [];
+let requests = [];
 
 function sendRequest(sender, receiver) {
-  return new Promise((resolve, reject) => {
-    if (sender.id === receiver.id)
-      return reject("Cannot connect to yourself");
-
-    const exists = requests.find(
-      r => r.sender === sender.id && r.receiver === receiver.id
-    );
-
-    if (exists) return reject("Request already sent");
-
-    requests.push({
-      sender: sender.id,
-      receiver: receiver.id,
-      status: "pending"
+  return Promise.resolve()
+    .then(() => {
+      if (!receiver) throw new Error("User not found");
+      if (sender.id === receiver.id) throw new Error("Cannot connect yourself");
+      if (sender.connections.includes(receiver.id)) throw new Error("Already connected");
+    })
+    .then(() => {
+      const exists = requests.find(
+        r => r.sender === sender.id && r.receiver === receiver.id && r.status === "pending"
+      );
+      if (exists) throw new Error("Request already sent");
+    })
+    .then(() => {
+      requests.push({
+        sender: sender.id,
+        receiver: receiver.id,
+        status: "pending",
+        timestamp: new Date()
+      });
+      emitter.emit("connectionRequested");
     });
-
-    emitter.emit("connectionRequested");
-    resolve();
-  });
 }
 
-async function acceptRequest(receiverId, senderId) {
-  const req = requests.find(
-    r => r.sender === senderId && r.receiver === receiverId
-  );
+async function acceptRequest(receiver, senderId) {
+  try {
+    const req = requests.find(
+      r => r.sender === senderId && r.receiver === receiver.id && r.status === "pending"
+    );
 
-  if (!req) throw new Error("Request not found");
+    if (!req) throw new Error("Request not found");
 
-  req.status = "accepted";
-  emitter.emit("connectionAccepted");
+    req.status = "accepted";
+
+    receiver.connections.push(senderId);
+
+    const allUsers = require("./user").getAllUsers();
+    const sender = allUsers.find(u => u.id === senderId);
+
+    if (sender) sender.connections.push(receiver.id);
+
+    emitter.emit("connectionAccepted");
+  } catch (err) {
+    emitter.emit("operationFailed", err.message);
+  }
+}
+
+async function rejectRequest(receiver, senderId) {
+  try {
+    const req = requests.find(
+      r => r.sender === senderId && r.receiver === receiver.id && r.status === "pending"
+    );
+
+    if (!req) throw new Error("Request not found");
+
+    req.status = "rejected";
+
+    emitter.emit("connectionRejected");
+  } catch (err) {
+    emitter.emit("operationFailed", err.message);
+  }
+}
+
+function getRequests(userId) {
+  return requests.filter(r => r.receiver === userId && r.status === "pending");
 }
 
 module.exports = {
   sendRequest,
   acceptRequest,
+  rejectRequest,
+  getRequests,
   requests
 };
