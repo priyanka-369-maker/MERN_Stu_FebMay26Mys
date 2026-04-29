@@ -5,6 +5,7 @@
 // State: data managed inside a component
 //belongs to the component itself
 // can be modified/changed
+//Setter method is used to modify data
 
 import { useState } from "react"
 
