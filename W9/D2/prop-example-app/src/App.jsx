@@ -1,12 +1,19 @@
 import './App.css'
 import { PropBasics } from './components/P1'
+import { PropDestructuring } from './components/p2'
+import { PropsChildren } from './components/P3'
+import { PropDrillingDemo } from './components/P4'
+
 
 function App() {
   
 
   return (
     <>
-      <PropBasics/>
+      {/* <PropBasics/>
+      <PropDestructuring/>
+      <PropsChildren/> */}
+      <PropDrillingDemo/>
     </>
   )
 }
