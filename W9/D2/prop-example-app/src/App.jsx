@@ -4,6 +4,8 @@ import { PropDestructuring } from './components/p2'
 import { PropsChildren } from './components/P3'
 import { PropDrillingDemo } from './components/P4'
 import { SharedStateParent } from './components/P5'
+import { CompositionDemo } from './components/P6'
+import { ObjectsAndArrayProps } from './components/P7'
 
 
 function App() {
@@ -14,8 +16,10 @@ function App() {
       {/* <PropBasics/>
       <PropDestructuring/>
       <PropsChildren/> 
-      <PropDrillingDemo/>*/}
+      <PropDrillingDemo/>
       <SharedStateParent/>
+      <CompositionDemo/>*/}
+      <ObjectsAndArrayProps/>
     </>
   )
 }
