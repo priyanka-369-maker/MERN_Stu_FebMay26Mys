@@ -36,11 +36,11 @@ const projectsData = [
   },
   {
     id: 4,
-    name: "Developer Stats Dashboard",
+    name: "BookMyShow",
     category: "JavaScript",
     description:
-      "Dynamic dashboard that loads developer statistics and profile insights using Fetch API.",
-    technologies: ["JavaScript", "Fetch API", "JSON"],
+      "A BookMyShow project lets users browse movies, choose seats, and book tickets online.",
+    technologies: ["Node.js", "MongoDB"],
     status: "Demo",
     liveDemo: "#",
     github: "#"
