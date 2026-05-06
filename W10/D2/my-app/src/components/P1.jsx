@@ -1,56 +1,47 @@
-// useContext hook 
-//Context: lets you share data between components
-//without passing props manually through every level
-import { createContext, useContext,useState } from "react";
-//why to useContext?
-//1.Helps us avoid prop drilling
-//2.Useful for shared values: 
-  // -theme details
-  // -logged-in user details
-  // -language settings
-  // -app settings
-//Basic Steps:
-  // 1 Create a context
-  // 2 Wrap components with Provider
-  // 3 Read value using useContext()
+// useContext hook
+// Context: lets you share data (state) between components without passing props down manually at every level.
 
-  // 1 Create a context
-  const ThemeContext = createContext();
+import { createContext, useContext, useState } from "react"
+import { useDocumentTitle } from "./P2";
+// Why to use useContext?
+// 1. Helps us to avoid prop drilling (passing props down multiple levels).
+// 2. Useful for shared values:
+   // - theme details
+   // - logged-in user details
+   // - language settings
+   // - app settings
 
-  //Child component
-  function Header(){
+// Basic Steps:
+// 1. Create a useContext
+// 2. Wrap components with Provider
+// 3. Read value using useContext()
+
+// 1. Create a useContext
+const ThemeContext = createContext();
+
+// Child component 1
+function Header() {
     const theme = useContext(ThemeContext);
-    return(
-        <header style={{
-            padding:'20px',
-            marginTop:'20px',
-            background: theme === 'dark'?'#222' : '#eee',
-            color: theme === 'dark'?'#fff' : '#000',
-        }}>
-<h3>Header component</h3>
-<p>current theme from context:{theme}</p>
+    return (
+        <header style={{ padding: '20px', marginTop:'20px', background: theme === 'dark' ? '#222' : '#eee', color: theme === 'dark' ? '#fff' : '#000' }}>
+            <h3>Header Component</h3>
+            <p>Current theme from context: {theme}</p>
         </header>
     );
-  }
-  
-  //Child component 2
-  function Content(){
-    const theme = useContext(ThemeContext);
-    return(
-        <div style={{
-            padding: '20px',
-            marginTop:'20px',
-             background: theme === 'dark'?'#333' : '#f9f9f9',
-            color: theme === 'dark'?'#fff' : '#000',
-        }}>
-            <p>This component also uses the same context value</p>
+}
 
+// Child component 2
+function Content() {
+    const theme = useContext(ThemeContext);
+    return (
+        <div style={{padding: '20px', marginTop:'20px', background: theme === 'dark' ? '#333' : '#f9f9f9', color: theme === 'dark' ? '#fff' : '#000' }}>
+            <p>This component also uses the same context value</p>
         </div>
     );
-  }
+}
 
-function Layout(){
-    return(
+function Layout() {
+    return (
         <div>
             <Header />
             <Content />
@@ -58,24 +49,23 @@ function Layout(){
     );
 }
 
-export function UseContextIntro(){
-    //Shared state
-    const[theme,setTheme] = useState('light');
+export function UseContextIntro() {
+    // Shared state for theme
+    const [theme, setTheme] = useState('light');
+    useDocumentTitle('UseContext Example');
+    // Toggle theme function
     const toggleTheme = () => {
-        setTheme(theme === 'light' ? 'dark' : 'light');
+        setTheme( theme === 'light' ? 'dark' : 'light');
     };
-    return(
+
+    return (
         <section>
-            <h2>useContent Example via theme</h2>
-            <p>
-                Example to show the usage of context sharing
-            </p>
-            <button onClick={toggleTheme}>
-                 Toggle Theme
-            </button>
+            <h2>useContext Example via theme</h2>
+            <p>Example to show the usage of context sharing</p>
+            <button onClick={toggleTheme}>Toggle Theme</button>
             <ThemeContext.Provider value={theme}>
-                <Layout/>
+                <Layout />
             </ThemeContext.Provider>
         </section>
-    )
+    );
 }
