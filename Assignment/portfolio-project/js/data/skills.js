@@ -54,5 +54,12 @@ const skillsData = [
     shortLabel: "C",
     category: "Frontend",
     description: "Styling, layouts, Flexbox, Grid, and responsive design."
+  },
+  {
+    id: 9,
+    name: "Express.js",
+    shortLabel: "E",
+    category: "Backend",
+    description: "Use quickly build server-side APIs and handle HTTP requests in a Node.js application."
   }
 ];

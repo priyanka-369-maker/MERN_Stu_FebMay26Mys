@@ -1,47 +1,27 @@
-function renderEducations(){
+function renderEducation(data) {
+  const container = document.getElementById("experience-container");
 
-    const experience = document.getElementById("experience-container");
-    if(!experience){
-        console.log("experience Container Not Found");
-        return;
-    }
+  if (!container) return;
 
-    experience.innerHTML = "";
+  container.innerHTML = data.map((edu) => `
+    <div class="bg-gray-800 p-6 rounded-xl shadow hover:scale-105 transition">
 
-    educationsData.forEach(function(education){
-        const card = document.createElement("div");
-        card.className = "p-10  text-center bg-blue-200 rounded-3xl shadow-md m-10px mb-5";
+      <h3 class="text-xl font-bold text-blue-400">
+        ${edu.course}
+      </h3>
 
-        const educationBoard = document.createElement("h1");
-        educationBoard.className = "text-3xl font-bold  text-purple-900";
-        educationBoard.textContent = education.board;
-        
+      <p class="text-gray-300 mt-1">
+        ${edu.college}
+      </p>
 
-        const educationCourse = document.createElement("h3");
-        educationCourse.className = "text-md font-bold";
-        educationCourse.textContent = education.course;
+      <p class="text-gray-400 text-sm">
+        ${edu.board} • ${edu.year}
+      </p>
 
-        const educationYear = document.createElement("p");
-        educationYear.className = "text-sm font-bold";
-        educationYear.textContent = education.year;
+      <p class="text-green-400 font-semibold mt-2">
+        ${edu.percentage}
+      </p>
 
-        const educationCollege = document.createElement("p");
-        educationCollege.className = "text-sm font-bold";
-        educationCollege.textContent = education.college;
-
-        const educationPercentage = document.createElement("p");
-        educationPercentage.className = "text-sm font-bold";
-        educationPercentage.textContent = education.percentage;
-        
-        card.appendChild(educationBoard);
-        card.appendChild(educationCourse);
-        card.appendChild(educationYear);
-        card.appendChild(educationCollege);
-        card.appendChild(educationPercentage);
-
-        experience.appendChild(card);
-
-    });
-    console.log("")
+    </div>
+  `).join("");
 }
-renderEducations();

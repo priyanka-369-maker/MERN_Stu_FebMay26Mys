@@ -1,56 +1,77 @@
 function initContactValidation() {
-    const contactModal = document.getElementById("contact-modal");
-    const contactForm = document.getElementById("contact-form");
-    const contactName = document.getElementById("contact-name");
-    const contactEmail = document.getElementById("contact-email");
-    const formMessage = document.getElementById("form-message");
-    if (!contactModal || !contactForm || !contactName || !contactEmail || !formMessage) {
-        console.log("Contact form elements not found");
-        return;
+  const form = document.getElementById("contact-form");
+
+  const name = document.getElementById("name");
+  const email = document.getElementById("email");
+  const message = document.getElementById("message");
+
+  const nameError = document.getElementById("name-error");
+  const emailError = document.getElementById("email-error");
+  const messageError = document.getElementById("message-error");
+
+  if (!form) return; // safety check
+
+  function showError(input, errorEl, message) {
+    errorEl.textContent = message;
+    errorEl.classList.remove("hidden");
+    input.classList.add("border", "border-red-500");
+  }
+
+  function clearError(input, errorEl) {
+    errorEl.textContent = "";
+    errorEl.classList.add("hidden");
+    input.classList.remove("border", "border-red-500");
+  }
+
+  function validateEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  function validateForm() {
+    let isValid = true;
+
+    // Name
+    if (name.value.trim() === "") {
+      showError(name, nameError, "Name is required");
+      isValid = false;
+    } else {
+      clearError(name, nameError);
     }
-    contactForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-        const name = contactName.value.trim();
-        const email = contactEmail.value.trim();
-        formMessage.textContent = "";
-        formMessage.className = "text-sm";
-        //Name validation
-        if (name === "") {
-            formMessage.textContent = "Name is requried";
-            formMessage.classList.add("text-red-500")
-            contactName.focus();
-            return;
-        }
-        if (name.length < 5) {
-            formMessage.textContent = "Name must be at least 5 chars";
-            formMessage.classList.add("text-red-500")
-            contactName.focus();
-            return;
-        }
-        //email validation
-        if (email === "") {
-            formMessage.textContent = "email is requried";
-            formMessage.classList.add("text-red-500")
-            contactEmail.focus();
-            return;
-        }
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(email)) {
-            formMessage.textContent = "Enter valid email";
-            formMessage.classList.add("text-red-500");
-            contactEmail.focus();
-            return;
-        }
-        formMessage.textContent = "Message submitted successfully";
-        formMessage.classList.add("text-green-600");
-        console.log("Valid credentials:", { name: name, email: email });
-        contactForm.reset();
-    });
-    contactName.addEventListener("input",function(){
-        formMessage.textContent = "";
-    });
-    contactEmail.addEventListener("input",function(){
-        formMessage.textContent = "";
-    });
+
+    // Email
+    if (email.value.trim() === "") {
+      showError(email, emailError, "Email is required");
+      isValid = false;
+    } else if (!validateEmail(email.value)) {
+      showError(email, emailError, "Enter a valid email");
+      isValid = false;
+    } else {
+      clearError(email, emailError);
+    }
+
+    // Message
+    if (message.value.trim() === "") {
+      showError(message, messageError, "Message cannot be empty");
+      isValid = false;
+    } else if (message.value.length < 10) {
+      showError(message, messageError, "Message must be at least 10 characters");
+      isValid = false;
+    } else {
+      clearError(message, messageError);
+    }
+
+    return isValid;
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    if (validateForm()) {
+      alert("Form submitted successfully!");
+      form.reset();
+    }
+  });
 }
 
+/* Initialize */
+document.addEventListener("DOMContentLoaded", initContactValidation);

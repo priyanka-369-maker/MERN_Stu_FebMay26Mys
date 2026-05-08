@@ -5,8 +5,8 @@ document.addEventListener("DOMContentLoaded", function(){
     initContactValidation();
     initThemeToggle();
     renderProjects();
-    renderEducation();
-    renderInternship();
+    renderEducation(educationsData);
+    renderInternship(internshipData);
      renderTestimonials();
     initScrollProgress();
     initScrollSpy();
@@ -19,4 +19,8 @@ document.addEventListener("DOMContentLoaded", function(){
     initContactAutoSave();
     initRecentlyViewedProjects();
     initGeolocationFeature();
+    initContactValidation();
+    initDynamicGreeting();
+    initGeolocationFeature();
+    initCustomCursor();
 });

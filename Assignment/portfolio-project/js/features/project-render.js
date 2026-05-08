@@ -13,7 +13,7 @@ function renderProjects() {
         // Create project card
         const card = document.createElement("div");
         card.className =
-            "p-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition text-center";
+            "p-8 bg-blue rounded-3xl shadow-lg hover:shadow-2xl transition text-center";
 
         // Project Name
         const projectName = document.createElement("h3");
@@ -22,7 +22,7 @@ function renderProjects() {
 
         // Category
         const category = document.createElement("p");
-        category.className = "text-sm text-green-700 font-semibold mb-2";
+        category.className = "text-sm text-blue-100 font-semibold mb-2";
         category.textContent = project.category;
 
         // Description
@@ -71,14 +71,14 @@ function renderProjects() {
         liveBtn.href = project.liveDemo;
         liveBtn.textContent = "Live Demo";
         liveBtn.className =
-            "px-4 py-2 bg-green-900 text-white rounded-lg text-sm";
+            "px-4 py-2 bg-blue-300 text-white rounded-lg text-sm";
 
         // GitHub Button
         const githubBtn = document.createElement("a");
         githubBtn.href = project.github;
         githubBtn.textContent = "GitHub";
         githubBtn.className =
-            "px-4 py-2 bg-gray-800 text-white rounded-lg text-sm";
+            "px-4 py-2 bg-blue-300 text-white rounded-lg text-sm";
 
         // Add buttons
         buttonBox.appendChild(liveBtn);

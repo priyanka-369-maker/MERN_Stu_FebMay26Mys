@@ -1,46 +1,18 @@
-/* body{
-    background-color: AliceBlue;
-    color: Black;
+#cursor {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #60a5fa;
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease, background 0.2s ease;
+  z-index: 9999;
 }
 
-nav{
-    background-color: LightSteelBlue;
+.cursor-grow {
+  transform: translate(-50%, -50%) scale(2);
+  background: rgba(96, 165, 250, 0.3);
 }
-
-section{
-    background-color: Lavender;
-}
-
-.bg-white{
-    background-color: White;
-}
-
-.text-gray-700{
-    color: Black;
-} */
-  Dark Theme 
-
- .dark-mode{
-    background-color: rgb(84, 84, 167);
-    color: WhiteSmoke;
-}
-
-.dark-mode nav{
-    background-color: rgb(120, 219, 219);
-}
-
-.dark-mode section{
-    background-color: rgb(98, 98, 167);
-}
-
-.dark-mode .bg-blue-100{
-    background-color: rgb(126, 221, 221);
-}
-
-.dark-mode .bg-white{
-    background-color: rgb(111, 175, 240);
-}
-
-.dark-mode .text-gray-700{
-    color: rgb(129, 88, 88);
-} 

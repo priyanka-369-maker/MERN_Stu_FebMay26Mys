@@ -2,12 +2,16 @@ function initGeolocationFeature() {
     const btn = document.getElementById("get-location");
     const output = document.getElementById("location-message");
 
-    if (!btn || !output) return;
+    if (!btn || !output) {
+        console.warn("Geolocation elements not found");
+        return;
+    }
 
     btn.addEventListener("click", function () {
+        console.log("Location button clicked");
 
         if (!navigator.geolocation) {
-            output.textContent = "Geolocation is not supported by your browser ❌";
+            output.textContent = "Geolocation not supported ❌";
             return;
         }
 
@@ -18,11 +22,7 @@ function initGeolocationFeature() {
                 const lat = position.coords.latitude;
                 const lon = position.coords.longitude;
 
-                console.log("Latitude:", lat);
-                console.log("Longitude:", lon);
-
                 try {
-                    // Reverse geocoding using OpenStreetMap (free API)
                     const response = await fetch(
                         `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
                     );
@@ -38,22 +38,15 @@ function initGeolocationFeature() {
                     output.textContent = `You are browsing from ${city} 📍`;
                 } catch (error) {
                     console.error(error);
-                    output.textContent = "Unable to fetch location name ⚠️";
+                    output.textContent = "Failed to fetch location ⚠️";
                 }
             },
             function (error) {
                 console.error(error);
-
-                if (error.code === error.PERMISSION_DENIED) {
-                    output.textContent = "Location access denied ❌";
-                } else {
-                    output.textContent = "Error getting location ⚠️";
-                }
+                output.textContent = "Location permission denied ❌";
             }
         );
     });
-
-    console.log("Geolocation feature initialized");
 }
 
-initGeolocationFeature();
+document.addEventListener("DOMContentLoaded", initGeolocationFeature);
