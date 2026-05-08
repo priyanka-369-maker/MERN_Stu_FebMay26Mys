@@ -18,7 +18,7 @@ exports.register = async (req,res,next)=>{
 //verify otp
 exports.verifyOTP = async (req,res,next)=>{
     try{
-        await authService.verifyOTP(req.body);
+        await authService.verifyOTP(req.body.email,req.body.otp);
         res.status(200).json({
             success:true,
             message:"OTP verified succesfully"

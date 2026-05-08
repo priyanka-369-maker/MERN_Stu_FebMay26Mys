@@ -1,5 +1,6 @@
 const bookingService = require("../services/booking.service");
-//Create booking
+
+// Create booking
 exports.createBooking = async (req,res,next) => {
     try{
         const booking = await bookingService.createBooking(
@@ -16,35 +17,33 @@ exports.createBooking = async (req,res,next) => {
         next(error);
     }
 };
-//Get bookings
-exports.getMyBookings = async (req,res,next) => {
-  try{
-  const bookings = await bookingService.getUserBookings(req.user._id);
-   res.status(200).json({
-            success:true,
-            message:"Booking fetched.",
-            data:booking,
-        });
-  }
-   catch(error){
-        next(error);
-    }
 
-  };
-//Cancel booking
-exports.cancelBookings = async (req,res,next) => {
-  try{
-  await bookingService.cancelBookings(req.params.id,req.user._id);
-   res.status(200).json({
+// Get bookings
+exports.getMyBookings = async (req,res,next) => {
+    try{
+        const bookings = await bookingService.getUserBookings(req.user._id);
+        res.status(200).json({
             success:true,
-            message:"Booking cancelled.",
+            message:"Bookings fetched.",
             data:bookings,
         });
-  }
-   catch(error){
+    }
+    catch(error){
         next(error);
     }
+};
 
-  };
-
-
+// cancel booking
+exports.cancelBooking = async (req,res,next) => {
+    try{
+        await bookingService.cancelBooking(req.params.id,req.user._id);
+        res.status(200).json({
+            success:true,
+            message:"Bookings cancelled.",
+        
+        });
+    }
+    catch(error){
+        next(error);
+    }
+};

@@ -1,55 +1,63 @@
 const movieService = require("../services/movie.service");
-//Create Movie
-exports.createMovie = async (req, res) => {
-    try {
+
+//Create movie
+exports.createMovie = async (req,res,next) => {
+    try{
         const movie = await movieService.createMovie(req.body);
         res.status(201).json({
-            success: true,
-            message: "Movie created successfully",
-            data: movie,
+            success:true,
+            message:"Movie created successfully",
+            data:movie
         });
-    } catch (error) {
+    }
+    catch(error){
         next(error);
     }
 };
+
 //Get movies
-exports.getMovies = async (req, res) => {
-    try {
-        const movies = await movieService.getMovies(req.query);
+exports.getMovies = async (req,res,next) => {
+    try{
+        const result = await movieService.getMovies(req.query);
         res.status(200).json({
-            success: true,
-            message: "Movie List fetched",
-            data: result,
+            success:true,
+            message:"Movie List fetched",
+            data:result
         });
-    } catch (error) {
+    }
+    catch(error){
         next(error);
     }
 };
-// update movie
-exports.updateMovie = async (req, res) => {
-    try {
-        const movie = await movieService.updateMovie(req.params.id, req.body);
+
+//Update movie
+exports.updateMovie = async (req,res,next) => {
+    try{
+        const movie = await movieService.updateMovie(
+            req.params.id,
+            req.body
+        );
         res.status(200).json({
-            success: true,
-            message: "Movie updated successfully",
-            data: movie,
+            success:true,
+            message:"Movie updated successfully",
+            data:movie
         });
-    } catch (error) {
+    }
+    catch(error){
         next(error);
     }
 };
-//Delete Movie
-exports.deleteMovie = async (req, res) => {
-    try {
+
+//Delete movie
+exports.deleteMovie = async (req,res,next) => {
+    try{
         await movieService.deleteMovie(req.params.id);
         res.status(200).json({
-            success: true,
-            message: "Movie deleted successfully",
-
+            success:true,
+            message:"Movie deleted successfully"
         });
-    } catch (error) {
+    }
+    catch(error){
         next(error);
-    };
+    }
 };
-
-
