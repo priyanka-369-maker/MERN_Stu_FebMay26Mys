@@ -10,3 +10,11 @@
   box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* subtle shadow */
   text-align: center;            /* center text */
 }
+.setBorder {
+    border: 2px solid #4CAF50;
+    padding: 16px;
+    margin: 12px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
