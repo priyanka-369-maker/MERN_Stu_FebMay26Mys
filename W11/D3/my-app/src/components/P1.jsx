@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 // Managing API state with useEffect
-export default function ManagingApiState() {
+export  function ManagingApiState() {
 
     // useState: stores the list of users returned from API
     const [users, setUsers] = useState([]);
@@ -79,7 +79,7 @@ export default function ManagingApiState() {
             {!loading && !error && users.length === 0 && (
                 <p>No users found.</p>
             )}
-            
+
 
             {/* Success UI */}
             {!loading && !error && users.length > 0 &&
