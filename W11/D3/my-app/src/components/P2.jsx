@@ -34,6 +34,7 @@ export function UseEffectLifecycle(){
     function handleReset(){
         setCount(0);
     }
+    
     return(
         <section>
             <h2>useEffect Lifecycle</h2>
