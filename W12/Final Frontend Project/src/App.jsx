@@ -5,12 +5,20 @@ import './App.css'
 // import HomePage from "./pages/HomePage";
 // import MovieCard from "./components/MovieCard";
 // import CitySelector from "./components/CitySelector";
-import MovieSearch from "./components/MovieSearch";
+// import MovieSearch from "./components/MovieSearch";
+// import BookButton from "./components/BookButton";
+// import GenreFilter from "./components/GenreFilter";
+// import Loginform from "./components/Loginform";
+import SearchShortcut from "./components/SearchShortcut";
 function App() {
  
 
   return (
-    <MovieSearch/>
+    <SearchShortcut/>
+    // <Loginform/>
+    // <GenreFilter/>
+    // <BookButton/>
+    // <MovieSearch/>
     /* Controlled component */
     // <CitySelector/>
     
