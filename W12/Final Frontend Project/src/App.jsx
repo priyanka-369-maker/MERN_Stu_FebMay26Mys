@@ -9,12 +9,18 @@ import './App.css'
 // import BookButton from "./components/BookButton";
 // import GenreFilter from "./components/GenreFilter";
 // import Loginform from "./components/Loginform";
-import SearchShortcut from "./components/SearchShortcut";
+// import SearchShortcut from "./components/SearchShortcut";
+// import AuthStatus from "./components/AuthStatus";
+// import MovieLoader from "./components/MovieLoader";
+import MovieResults from "./components/MovieResults";
 function App() {
  
 
   return (
-    <SearchShortcut/>
+    <MovieResults/>
+    // <MovieLoader/>
+    // <AuthStatus/>
+    // <SearchShortcut/>
     // <Loginform/>
     // <GenreFilter/>
     // <BookButton/>
